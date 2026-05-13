@@ -67,7 +67,7 @@ export const ProjectCard = ({
             </h3>
           </header>
 
-          <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem]">
             {description}
           </p>
 
