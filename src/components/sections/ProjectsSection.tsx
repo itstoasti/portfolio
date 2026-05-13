@@ -11,8 +11,8 @@ import { SeparatorLine } from "@/src/components/ui/separator-line";
 import { ChevronRight } from "lucide-react";
 
 export const ProjectsSection = () => {
-  // Limit to 6 projects
-  const displayedProjects = projects.slice(0, 6);
+  // Show all projects, reversed to show newest first
+  const displayedProjects = [...projects].reverse();
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   const [preloadVideo, setPreloadVideo] = useState<string | null>(null);
 
