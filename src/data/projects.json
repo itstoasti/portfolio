@@ -1,0 +1,63 @@
+[
+  {
+    "title": "MagicMockup",
+    "description": "Create stunning mockups and text-behind-image designs.",
+    "tech": ["TypeScript", "React", "Next.js"],
+    "status": "Live",
+    "year": "2024",
+    "link": "https://magicmockup.xyz",
+    "code": "https://github.com/itstoasti/MagicMockupv2",
+    "imageSrc": "/projects/magicmockup.png"
+  },
+  {
+    "title": "Yummy: Ai Recipes & Meal Planner",
+    "description": "AI-powered recipe app with personalized suggestions and chat.",
+    "tech": ["Expo", "React Native", "TypeScript", "OpenAI"],
+    "status": "Live",
+    "year": "2024",
+    "link": "#",
+    "code": "https://github.com/itstoasti/airecipe",
+    "imageSrc": "/projects/yummy-v2.png"
+  },
+  {
+    "title": "Spark: Couples and Relationships App",
+    "description": "Virtual pet app for couples to stay connected together.",
+    "tech": ["Expo", "React Native", "Supabase", "JavaScript"],
+    "status": "Live",
+    "year": "2024",
+    "link": "#",
+    "code": "https://github.com/itstoasti/streakpets",
+    "imageSrc": "/projects/spark.jpg"
+  },
+  {
+    "title": "KetoMate",
+    "description": "Keto diet tracking app with food database search.",
+    "tech": ["TypeScript", "Expo", "Supabase", "React Native"],
+    "status": "Live",
+    "year": "2024",
+    "link": "#",
+    "code": "https://github.com/itstoasti/KetoMate",
+    "imageSrc": "/projects/ketomate-v2.jpg"
+  },
+  {
+    "title": "Focus Notes",
+    "description": "Simple and elegant note-taking app for productivity.",
+    "tech": ["TypeScript", "React Native", "Expo"],
+    "status": "Live",
+    "year": "2024",
+    "link": "#",
+    "code": "https://github.com/itstoasti/Focus-Notes",
+    "imageSrc": "/projects/focus-notes.jpg"
+  },
+  {
+    "title": "Hemperial CBD",
+    "description": "E-commerce store for CBD products.",
+    "tech": ["React", "Stripe", "MongoDB", "JavaScript", "Tailwind CSS", "Vite"],
+    "status": "Live",
+    "year": "2025",
+    "link": "https://hemperialcbd.com/",
+    "code": "#",
+    "imageSrc": "/projects/hemperial.jpg",
+    "video": "/projects/video/grocery.mp4"
+  }
+]

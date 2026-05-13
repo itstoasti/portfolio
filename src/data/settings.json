@@ -1,0 +1,24 @@
+{
+  "showUiLibrary": true,
+  "showSocialLinks": true,
+  "socialLinks": [
+    {
+      "id": "twitter",
+      "platform": "Twitter/X",
+      "url": "https://x.com/toastiwashere",
+      "icon": "FaXTwitter"
+    },
+    {
+      "id": "github",
+      "platform": "GitHub",
+      "url": "https://github.com/itstoasti",
+      "icon": "FaGithub"
+    },
+    {
+      "id": "resume",
+      "platform": "Resume",
+      "url": "/resume.pdf",
+      "icon": "FaPaperclip"
+    }
+  ]
+}
