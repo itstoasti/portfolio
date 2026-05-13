@@ -22,6 +22,20 @@ export default function AdminPage() {
     socialLinks: []
   });
   const [savingSettings, setSavingSettings] = useState(false);
+  const [allProjects, setAllProjects] = useState<any[]>([]);
+
+  const fetchProjects = async () => {
+    try {
+      // In local dev, we fetch from the JSON file via an API we'll ensure exists
+      const res = await fetch("/api/projects/list");
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        setAllProjects(data);
+      }
+    } catch (err) {
+      console.error("Failed to fetch projects", err);
+    }
+  };
 
   const fetchSettings = async () => {
     try {
@@ -37,6 +51,7 @@ export default function AdminPage() {
 
   useEffect(() => {
     fetchSettings();
+    fetchProjects();
   }, []);
 
   const fetchRepoData = async () => {
@@ -104,11 +119,39 @@ export default function AdminPage() {
         const data = await res.json();
         throw new Error(data.error || "Failed to save");
       }
-      setSuccessMessage("Project added! Vercel will redeploy shortly.");
+      setSuccessMessage("Project saved! Vercel will redeploy shortly.");
       setProject(null);
       setUrl("");
       setSelectedFile(null);
       setImagePreview(null);
+      fetchProjects(); // Refresh list
+    } catch (err: any) {
+      alert(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const deleteProject = async (title: string) => {
+    if (!password) return alert("Please enter the admin password first.");
+    if (!confirm(`Are you sure you want to delete "${title}"?`)) return;
+    
+    setLoading(true);
+    try {
+      const res = await fetch("/api/projects/delete", {
+        method: "POST",
+        headers: {
+          "x-admin-password": password,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ title }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Failed to delete");
+      }
+      setSuccessMessage("Project deleted!");
+      fetchProjects();
     } catch (err: any) {
       alert(err.message);
     } finally {
@@ -340,6 +383,54 @@ export default function AdminPage() {
             >
               {savingSettings ? "Updating..." : "Save All Changes"}
             </Button>
+          </div>
+        </MagicCard>
+
+        <MagicCard className="p-6 space-y-6 bg-zinc-900/50 border-zinc-800">
+          <header className="space-y-1">
+            <h2 className="text-xl font-semibold">Manage Projects</h2>
+            <p className="text-sm text-zinc-500">Edit or remove existing projects.</p>
+          </header>
+          
+          <div className="space-y-3">
+            {allProjects.map((p) => (
+              <div key={p.title} className="flex items-center justify-between p-4 bg-black/40 rounded-lg border border-zinc-800">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded bg-zinc-800 overflow-hidden flex-shrink-0">
+                    <img src={p.imageSrc} alt="" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium">{p.title}</h3>
+                    <p className="text-xs text-zinc-500">{p.year || "2024"}</p>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="h-8 border-zinc-700"
+                    onClick={() => {
+                      setProject(p);
+                      setUrl(""); // Clear auto-fill URL
+                      window.scrollTo({ top: 1000, behavior: 'smooth' });
+                    }}
+                  >
+                    Edit
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="h-8 w-8 text-zinc-500 hover:text-red-400"
+                    onClick={() => deleteProject(p.title)}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            ))}
+            {allProjects.length === 0 && (
+              <p className="text-center py-4 text-zinc-600 text-sm italic">No projects found.</p>
+            )}
           </div>
         </MagicCard>
 

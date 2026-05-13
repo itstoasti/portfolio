@@ -34,8 +34,15 @@ export async function POST(request: Request) {
           finalProjectData.imageSrc = `/projects/${imageFilename}`;
         }
 
-        const updatedProjects = [...currentData, finalProjectData];
-        fs.writeFileSync(fullPath, JSON.stringify(updatedProjects, null, 2));
+        // Upsert: replace if title matches, otherwise append
+        const index = currentData.findIndex((p: any) => p.title === finalProjectData.title);
+        if (index > -1) {
+          currentData[index] = finalProjectData;
+        } else {
+          currentData.push(finalProjectData);
+        }
+        
+        fs.writeFileSync(fullPath, JSON.stringify(currentData, null, 2));
       } catch (err) {
         console.error("Local write failed", err);
       }
@@ -66,7 +73,7 @@ export async function POST(request: Request) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            message: `Add image: ${imageFilename}`,
+            message: `Add/Update image: ${imageFilename}`,
             content: base64Content,
           }),
         }
@@ -96,9 +103,15 @@ export async function POST(request: Request) {
     const fileData = await getRes.json();
     const currentProjects = JSON.parse(Buffer.from(fileData.content, "base64").toString());
 
-    // 3. Append new project
-    const updatedProjects = [...currentProjects, finalProjectData];
-    const updatedContent = Buffer.from(JSON.stringify(updatedProjects, null, 2)).toString("base64");
+    // 3. Upsert project
+    const index = currentProjects.findIndex((p: any) => p.title === finalProjectData.title);
+    if (index > -1) {
+      currentProjects[index] = finalProjectData;
+    } else {
+      currentProjects.push(finalProjectData);
+    }
+    
+    const updatedContent = Buffer.from(JSON.stringify(currentProjects, null, 2)).toString("base64");
 
     // 4. Commit back to GitHub
     const putRes = await fetch(
@@ -110,7 +123,7 @@ export async function POST(request: Request) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: `Add project: ${finalProjectData.title}`,
+          message: `Update projects: ${finalProjectData.title}`,
           content: updatedContent,
           sha: fileData.sha,
         }),

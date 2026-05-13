@@ -56,24 +56,24 @@ export function Header() {
       >
         <Link href="/" className="hover:opacity-75 transition-opacity duration-300">
           <Image
-            className="w-9 h-9 rounded-full shadow-sm object-cover lg:hidden"
+            className="w-9 h-9 rounded-full shadow-sm object-cover sm:block"
             src="/assets/me.jpg"
             width={100}
             height={100}
             alt="Avatar"
           />
           <Image
-            className="h-12 w-auto hidden lg:block dark:hidden"
+            className="h-10 w-auto dark:hidden ml-2"
             src="/assets/signature-dark.png"
-            width={200}
-            height={80}
+            width={160}
+            height={60}
             alt="Dean Fields Signature"
           />
           <Image
-            className="h-12 w-auto hidden dark:lg:block"
+            className="h-10 w-auto hidden dark:block ml-2"
             src="/assets/signature-light.png"
-            width={200}
-            height={80}
+            width={160}
+            height={60}
             alt="Dean Fields Signature"
           />
         </Link>
