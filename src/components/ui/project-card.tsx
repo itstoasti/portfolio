@@ -46,7 +46,7 @@ export const ProjectCard = ({
                 alt={title}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className={`\${["Focus Notes", "KetoMate", "Hemperial CBD"].includes(title) ? "object-contain bg-white" : "object-cover"} \${imageObjectPosition} transition-all duration-300`}
+                className={`${["Focus Notes", "KetoMate", "Hemperial CBD", "Snap recipes"].includes(title) ? "object-contain bg-white" : "object-cover"} ${imageObjectPosition} transition-all duration-300`}
               />
 
               {/* Overlay with play icon or view text could go here */}

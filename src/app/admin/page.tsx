@@ -458,6 +458,29 @@ export default function AdminPage() {
                 </Button>
               </div>
             </div>
+            <div className="flex items-center justify-between pt-2 border-t border-zinc-800/40">
+              <span className="text-xs text-zinc-500">Or start with a blank template:</span>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="text-xs border-zinc-700 hover:bg-zinc-800"
+                onClick={() => {
+                  setProject({
+                    title: "",
+                    description: "",
+                    tech: [],
+                    link: "#",
+                    code: "#",
+                    imageSrc: "/projects/placeholder.png",
+                    year: new Date().getFullYear().toString(),
+                  });
+                  setUrl("");
+                }}
+              >
+                Create Manually
+              </Button>
+            </div>
           </div>
 
           {project && (
@@ -482,8 +505,8 @@ export default function AdminPage() {
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-wider text-zinc-500 font-bold">Tech Stack (Comma separated)</label>
                   <input 
-                    value={project.tech.join(", ")} 
-                    onChange={(e) => setProject({...project, tech: e.target.value.split(", ").map(t => t.trim())})} 
+                    value={(project.tech || []).join(", ")} 
+                    onChange={(e) => setProject({...project, tech: e.target.value.split(',').map(t => t.trim())})} 
                     className="w-full bg-black border border-zinc-700 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-zinc-500" 
                   />
                 </div>

@@ -18,6 +18,10 @@ import {
   SiJavascript,
   SiDrizzle,
   SiVite,
+  SiExpo,
+  SiSupabase,
+  SiOpenai,
+  SiGooglegemini,
 } from "react-icons/si";
 import { DiRedis } from "react-icons/di";
 import {
@@ -36,6 +40,8 @@ export const TECH_ICONS: Record<string, { icon: IconType; color: string }> = {
   // Frameworks
   "Next.js": { icon: SiNextdotjs, color: "#ffffff" },
   "React": { icon: SiReact, color: "#61DAFB" },
+  "React Native": { icon: SiReact, color: "#61DAFB" },
+  "Expo": { icon: SiExpo, color: "#ffffff" },
 
   // Languages
   "TypeScript": { icon: SiTypescript, color: "#3178C6" },
@@ -53,6 +59,7 @@ export const TECH_ICONS: Record<string, { icon: IconType; color: string }> = {
   "MongoDB": { icon: SiMongodb, color: "#47A248" },
   "Redis": { icon: DiRedis, color: "#DC382D" },
   "Drizzle": { icon: SiDrizzle, color: "#C5F74F" },
+  "Supabase": { icon: SiSupabase, color: "#3ECF8E" },
 
   // Backend
   "Node.js": { icon: SiNodedotjs, color: "#339933" },
@@ -69,6 +76,8 @@ export const TECH_ICONS: Record<string, { icon: IconType; color: string }> = {
 
   // AI & APIs
   "AI": { icon: TbBrandOpenai, color: "#10A37F" },
+  "OpenAI": { icon: SiOpenai, color: "#10A37F" },
+  "Gemini AI": { icon: SiGooglegemini, color: "#8E75C2" },
   "YouTube API": { icon: TbApi, color: "#FF0000" },
   "CoinGecko API": { icon: TbApi, color: "#8BC53F" },
   "Axios": { icon: TbApi, color: "#5A29E4" },
